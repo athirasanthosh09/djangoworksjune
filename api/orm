@@ -1,0 +1,41 @@
+from django.db import models
+
+# Create your models here
+class Books(models.Model):
+    name=models.CharField(max_length=200)
+    author=models.CharField(max_length=200)
+    price=models.PositiveIntegerField()
+    publisher=models.CharField(max_length=200)
+    qty=models.PositiveIntegerField(default=1)
+
+orm query for creating an object:
+
+modelname.objects.create(field1=value,field2=value2........)
+
+Books.objects.create(name="randamoozham",author="mt",price=400,publisher="abc",qty=30)
+Books.objects.create(name="alchemist",author="paulo",price=300,publisher="dc books",qty=20)
+Books.objects.create(name="mathilukal",author="Basheer",price=200,publisher="dc books",qty=15)
+Books.objects.create(name="chemmeen",author="Thakazhi",price=800,publisher="Manorama",qty=100)
+Books.objects.create(name="chemmeen",author="Thakazhi",price=800,publisher="Manorama",qty=100)
+Books.objects.create(name="The God of Small things",author="Arundhathi Roy",price=200,publisher="DC Books",qty=600)
+Books.objects.create(name="Khasakinte Ithihasam",author="O V Vijayan",price=450,publisher="DC Books",qty=100)
+
+
+list all Books
+
+w=Books.objects.all() #w=variable
+
+fetching a specific resource
+data=Books.objects.get(id=2)
+data=Books.objects.get(id=5)
+d=Books.objects.filter(qty__gt=100)
+
+exclude
+s=Books.objects.all().exclude(price=400)
+f=Books.objects.filter(price__gte=450,price__lte=800)
+g=Books.objects.filter(qty__gte=100,qty__lte=600)
+h=Books.objects.filter(publisher="dc books")
+o=Books.objects.order_by('price')
+o=Books.objects.order_by('-price')
+p=Books.objects.filter(id=8).update(price=550)
+k=Books.objects.filter(id=8).delete()
